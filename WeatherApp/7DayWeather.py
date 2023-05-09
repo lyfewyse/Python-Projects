@@ -4,7 +4,7 @@ import math
 from pprint import pprint
 
 # Set up API request URL
-API_key = "3b7a83991095f8cffa62e8b56a54f6c1"
+API_key = "{enter key}"
 base_url = "http://api.openweathermap.org/data/forecast/daily?"
 
 zip_code = input("Enter a Zip code and country code: ")
