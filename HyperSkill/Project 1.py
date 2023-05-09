@@ -14,5 +14,4 @@ print("Other expenses: ")
 other_expenses = int(input())
 net_income = (income - (staff_expenses + other_expenses))
 
-print("Net Income: ")
-print(net_income)
+print(f"Net Income: ${net_income}")
