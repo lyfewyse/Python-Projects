@@ -25,14 +25,14 @@ def remind_name():
 def guess_age():
     print('Let me guess your age.')
     #Intialize Values for Age
-    rem3 = float(input('What is your age divided your age by 3!(Round to the nearest 3 decimal points)'))
+    rem3 = float(input('What is your age divided by 3!(Round to the nearest 3 decimal points)'))
     rem3_answer = rem3 * 3
     rem3_remainder = rem3_answer % 3
-    rem5 = float(input('What is your age divided your age by 5!(Round to the nearest 3 decimal points)'))
+    rem5 = float(input('What is your age divided by 5!(Round to the nearest 3 decimal points)'))
     rem5_answer = rem5 * 5
     rem5_remainder = rem5_answer % 5
 
-    rem7 = float(input('What is your age divided your age by 7!(Round to the nearest 3 decimal points)'))
+    rem7 = float(input('What is your age divided by 7!(Round to the nearest 3 decimal points)'))
     rem7_answer = rem7 * 7
     rem7_remainder = rem7_answer % 7
     age = math.ceil((rem3_remainder * 70 + rem5_remainder * 21 + rem7_remainder * 15) % 105)
@@ -50,7 +50,7 @@ def count():
     user = int(input())
     number = 0
     while number <= user:
-        print(number, '!')
+        print(number, '')
         number += 1
     #Continue Function Call loop
     question_1()
@@ -93,7 +93,11 @@ def question_2():
 
 
 def end():
-    print('Congratulations, have a nice day!')
+    play_again = input('Would you like to play again![Y/N]').lower()
+    if play_again == 'y':
+        greet()
+    else:
+        print('Congratulations, have a nice day!')
 
 
 # Call Greeting to begin loop
