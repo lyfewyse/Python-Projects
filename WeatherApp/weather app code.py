@@ -53,7 +53,7 @@ def convert(city):
         show_weather(lat,long)
 
 def show_weather(lat,long):
-    api_key = '{enter key}'
+    api_key = '3b7a83991095f8cffa62e8b56a54f6c1'
     weather_data = requests.get(
         f'http://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={long}&cnt=7&units=imperial&appid={api_key}%22')
     print(weather_data.json)
