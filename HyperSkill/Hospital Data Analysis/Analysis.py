@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # set number of columns to display
 df = pd.set_option('display.max_columns', 8)
@@ -71,21 +73,51 @@ num_blood_tests_taken = blood_tests_by_hospital.loc[hospital_with_most_blood_tes
 # Output the answers
 
 # Which hospital has the highest number of patients?
-print(f"The answer to the 1st question is {hospital_with_highest_patients}")
+# print(f"The answer to the 1st question is {hospital_with_highest_patients}")
 
 # What share of the patients in the general hospital suffers from stomach-related issues?
 # Round the result to the third decimal place.
-print(f"The answer to the 2nd question is {general_stomach_share}")
+# print(f"The answer to the 2nd question is {general_stomach_share}")
 
 # What share of the patients in the sports hospital suffers from dislocation-related issues?
 # Round the result to the third decimal place.
-print(f"The answer to the 3rd question is {sports_dislocation_share}")
+# print(f"The answer to the 3rd question is {sports_dislocation_share}")
 
 # What is the difference in the median ages of the patients in the general and sports hospitals?
-print(f"The answer to the 4th question is {age_median_difference}")
+# print(f"The answer to the 4th question is {age_median_difference}")
 
 # After data processing at the previous stages, the blood_test column has three values: t = a blood test was taken,
 # f = a blood test wasn't taken, and 0 = there is no information. In which hospital the blood test was taken the most
 # often (there is the biggest number of t in the blood_test column among all the hospitals)?
 # How many blood tests were taken?
-print(f"The answer to the 5th question is {hospital_with_most_blood_tests}, {num_blood_tests_taken}")
+# print(f"The answer to the 5th question is {hospital_with_most_blood_tests}, {num_blood_tests_taken}")
+
+# What is the most common age of a patient among all hospitals? Plot a Histogram
+age_ranges = ['0-15', '15-35', '35-55', '55-70', '70-80']
+age_labels = ['0-15', '15-35', '35-55', '55-70', '70-80']
+merged_df['age_group'] = pd.cut(merged_df['age'], bins=[0, 15, 35, 55, 70, 80], labels=age_labels, include_lowest=True)
+
+plt.figure(figsize=(8, 6))
+sns.histplot(data=merged_df, x='age_group', bins=age_ranges, kde=True)
+plt.title("Age Distribution of Patients")
+plt.xlabel("Age Range")
+plt.ylabel("Count")
+plt.show()
+
+# What is the most common diagnosis among patients in all hospitals? Create a pie chart.
+common_diagnosis = merged_df['diagnosis'].value_counts().idxmax()
+
+plt.figure(figsize=(8, 6))
+merged_df['diagnosis'].value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.title("Diagnosis Distribution of Patients")
+plt.ylabel('')
+plt.legend(bbox_to_anchor=(1.1, 1.05))
+plt.show()
+
+# Build a violin plot of height distribution by hospitals.
+plt.figure(figsize=(8, 6))
+sns.violinplot(data=merged_df, x='hospital', y='height')
+plt.title("Height Distribution by Hospitals")
+plt.xlabel("Hospital")
+plt.ylabel("Height")
+plt.show()
